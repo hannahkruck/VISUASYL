@@ -19,12 +19,7 @@ def write():
     # Page title
     st.title("Detailed view")
     
-    # read CSV
-    # CSV for Pie Chart
-    df = pd.read_csv('https://raw.githubusercontent.com/hannahkruck/visuasyl/master/src/datasets/Piechart.csv',sep = ';')
-    
-
-    #-----------------Markdown info-----------------
+    #-----------------Markdown info CSS-----------------
     st.markdown('''
     <!-- https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_transition & https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_right-->
     <style>
@@ -68,20 +63,21 @@ def write():
                 <b>Sankey Diagram</b><br>
                     The Sankey diagram shows the top 10 origin (left) and target (right) countries 
                     as well as the distribution of asylum seekers per year.
+                <br><br>
+                <b>Line Chart</b><br>
+                    The line chart shows the development of total annual asylum applications over the years.
             </span>
         </div>
         ''', unsafe_allow_html=True)  
 
-    # read csv
-    # old csv  pie structure 
-    # df = pd.read_csv('https://raw.githubusercontent.com/hannahkruck/visuasyl/master/src/datasets/Piechart.csv',sep = ';')
-    # new csv  pie structure
-    df = pd.read_csv('https://raw.githubusercontent.com/hannahkruck/visuasyl/master/src/datasets/Piechart_neu_struk.csv',sep = ';')
-
+   
+    # read csv for sankey diagram
+    show_df = pd.read_csv('https://raw.githubusercontent.com/hannahkruck/visuasyl/master/src/datasets/Sankey_Diagramm.csv',sep = ';')
 
     #-----------------Slider-------------------
-    # Slider to choose Year for diagramm
-    year = st.slider("", (int(df["Year"].min())),(int(df["Year"].max())))
+    # Create Slider and get from above read csv min and max years 
+    year = st.slider("", (int(show_df["Year"].min())),(int(show_df["Year"].max())))
+    # Variable year for both diagrams
     selected_year = year
 
 
@@ -99,9 +95,6 @@ def write():
     # Variable year for Sankey diagram
     yearVar = selected_year    
                          
-    # read sankey csv and data selection
-    show_df = pd.read_csv('https://raw.githubusercontent.com/hannahkruck/visuasyl/master/src/datasets/Sankey_Diagramm.csv',sep = ';')
-
     # year
     yearRows = show_df[show_df['Year'] != yearVar].index
     show_df.drop(yearRows , inplace=True)
@@ -111,11 +104,13 @@ def write():
     label_souce2 = []
     elementVar = ''
 
+    # 
     for i in label_souce: 
         if(i != elementVar) : 
             label_souce2.append(i)
         elementVar = i
 
+    # 
     label_target = show_df['Label_Target'].dropna(axis=0, how='any')
     label = [*label_souce2, *label_target]
     source = show_df['Source'].dropna(axis=0, how='any')
@@ -124,11 +119,11 @@ def write():
 
     # setting color for node and link
     color_node = [
-    # Source order Syria, Afghanistan, Venezuela, Irak, Colombia, Pakistan, Türkei, Nigeria, Iran, Albania
+    # Source color order Syria, Afghanistan, Venezuela, Irak, Colombia, Pakistan, Türkei, Nigeria, Iran, Albania
     '#40bf77', '#93beec', '#1ff91f', '#cd8162', '#a6a6a6', '#80e5ff', '#b299e6', '#ff33ff', '#CDC037', '#ff6a6a',
-    # Target 
+    # Target color order
     '#0B2641', '#0B2641', '#0B2641', '#0B2641', '#0B2641', '#0B2641', '#0B2641', '#0B2641', '#0B2641', '#0B2641']
-    
+
     color_link = [
     '#b8e0b8', '#b8e0b8', '#b8e0b8', '#b8e0b8', '#b8e0b8', '#b8e0b8', '#b8e0b8', '#b8e0b8', '#b8e0b8', '#b8e0b8', 
     '#bed8f4', '#bed8f4', '#bed8f4', '#bed8f4', '#bed8f4', '#bed8f4', '#bed8f4', '#bed8f4', '#bed8f4', '#bed8f4', 
@@ -188,7 +183,7 @@ def write():
 
     # create pie figure
     fig1 = go.Figure(data=[go.Pie(
-            labels = labels, 
+            labels = labels,        
             values = values, 
             insidetextorientation = 'radial',
             hole = 0.399,)])

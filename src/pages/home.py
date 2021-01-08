@@ -1,4 +1,4 @@
-"""Page for viewing the awesome Streamlit vision"""
+"""This page shows the map view"""
 import pathlib
 import streamlit as st
 import awesome_streamlit as ast
@@ -12,9 +12,9 @@ import numpy as np
 def write():
     """Used to write the page in the app.py file"""
     with st.spinner("Loading Map ..."):
-        #ast.shared.components.title_awesome("")    #Title Awesome Streamlit ausgeblendet
 
         # read CSV
+
         # CSV for Choropleth Map
         df = pd.read_csv("https://raw.githubusercontent.com/hannahkruck/visuasyl/master/src/datasets/Map.csv", encoding ="utf8", sep=";")
         # CSV for Line Map
@@ -39,7 +39,7 @@ def write():
         selectedAge = st.sidebar.multiselect("Select Age", ("under 18", "18 - 34", "35 - 64", "over 65"))
         selectedGender = st.sidebar.selectbox("Select Gender", ("All", "Male", "Female"))
 
-        # Special filter for Choropleth Map
+        # --- Special filter for Choropleth Map --
         st.sidebar.header("Filter for Choropleth Map")
         # Drop down menu for Choropleth Map Information
         selectedMapChoropleth = st.sidebar.selectbox("Select Map Information",('Applications to target countries','Applicants by country of origin'))
@@ -53,7 +53,7 @@ def write():
             selectedCode = 'geoCodeHC'
             mapColor = 'Reds'
 
-        # Special filter for Line Map
+        # --- Special filter for Line Map ---
         st.sidebar.header("Filter for Line Map")
         # Select type (show routes of asylum seeker from a particular origin country or to a particular target country)
         selectedType = st.sidebar.radio("Select type",('Target country','Origin country'))
@@ -75,7 +75,7 @@ def write():
 
 #----------------- Website content (Year slider, i-Button) -------------------
 
-        # Markdown for i-Button
+        # --- Markdown for Info icon ---
         # CSS and HTML Code
         st.markdown('''
         <!-- https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_transition & https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_right-->
@@ -121,6 +121,8 @@ def write():
         <b>Choropleth Map</b><br>The Choropleth Map shows the number of asylum applications per country in Europe and the number of refugees per country worldwide for the selected year (see filter 'Select Map Information' for Choropleth Map).
         <br><br>
         <b>Line Map</b><br>The Line Map presents the routes of the refugees depending on the selected type. The type 'target country' shows from which countries the asylum seekers originate based on a specific target country. The type 'origin country' indicates where the asylum seekers are fleeing to from a specific country of origin.
+        <br><br>
+        <b>Colour gradient</b><br> It should be noted here that the colour gradient adjusts to the maximum and minimum value, i.e. the colour changes with each filtering.
         
         </span></div>
         ''', unsafe_allow_html=True)
@@ -343,8 +345,6 @@ def write():
 
         
 #----------------Create Maps with Plotly (Choropleth and Line Map)---------------------------
-        
-        #Link Toggle Map https://plotly.com/python/custom-buttons/
 
         fig = go.Figure()
 
@@ -365,27 +365,25 @@ def write():
             colorbar_title = 'Number of<br>asylum<br>applications<br>',
         ))
 
-        # Line Map
+        #--------- Line Map --------------
+        # Set selected country
         fig.add_trace(
             go.Scattergeo(
             locationmode = 'country names',
             lon = df2[selectedLon],
             lat = df2[selectedLat],
             hoverinfo = 'text',
-            name=selectedCountryMapLine,
+            name= selectedCountryMapLine,
             text = df2[countryCategory],
             line = dict(width = 1,color = 'red'),
             opacity = 0.510,
-            visible=showLine,
+            visible = showLine,
             mode = 'markers',
-            marker = dict(
-                size = 3,
-                color = 'rgb(255, 0, 0)',
-                line = dict(
-                    width = 3,
-                    color = 'rgba(68, 68, 68, 0)',
-                ))))
+            )
+        )
 
+        # NumPy Array Slicing
+        # Longitude and Latitude
         lons = []
         lats = []
         lons = np.empty(2 * len(df2))
@@ -395,15 +393,13 @@ def write():
         lats[::2] = df2['latDC']
         lats[1::2] = df2['latHC']
 
-        #hallo = 'testi'
-
+        # Set lines
         fig.add_trace(
             go.Scattergeo(
                 locationmode = 'country names',
                 visible= showLine,
                 name='route and number <br>of asylum seekers',
-                text=nameList,
-                hovertemplate=nameList,
+                hovertemplate = nameList,
                 lon = lons,
                 lat = lats,
                 mode = 'markers+lines',
@@ -412,6 +408,7 @@ def write():
             )
         )
 
+        # Update layout choropleth map
         fig.update_layout(
             showlegend = True,
             geo = go.layout.Geo(
@@ -425,13 +422,13 @@ def write():
 
         )
 
+        # Update layout line map
         fig.update_layout(
             geo=dict(
                 showframe=False,
                 showcoastlines=False,
                 projection_type='equirectangular'
             ),
-
             autosize=True,
             margin=dict(
                 l=0,
