@@ -16,9 +16,9 @@ def write():
 
         # read CSV
         # CSV for Choropleth Map
-        df = pd.read_csv("https://raw.githubusercontent.com/hannahkruck/VIS_Test1/Develop/map10-28.csv", encoding ="utf8", sep=";")
+        df = pd.read_csv("https://raw.githubusercontent.com/hannahkruck/visuasyl/master/src/datasets/Map.csv", encoding ="utf8", sep=";")
         # CSV for Line Map
-        df2 = pd.read_csv("https://raw.githubusercontent.com/hannahkruck/VIS_Test1/Develop/map10-28.csv", encoding ="utf8", sep=";")
+        df2 = pd.read_csv("https://raw.githubusercontent.com/hannahkruck/visuasyl/master/src/datasets/Map.csv", encoding ="utf8", sep=";")
 
         # Title
         st.title("Map view")
