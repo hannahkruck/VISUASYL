@@ -268,11 +268,11 @@ def write():
 			VISUASYL was developed by five students (3rd semester) of the Human-Centered Computing programme at Reutlingen University:
 			<br>
 			<ul>
-				<li> Rahel Anna, Illi<br></li>
-				<li> Jessica, Giebel<br></li>
-				<li> Yailda, Aini<br></li>
-				<li> Hannah, Kruck<br></li>
-				<li> Manuel Samuel, Haynes<br></li>
+				<li> Rahel Anna Illi<br></li>
+				<li> Jessica Giebel<br></li>
+				<li> Yailda Aini<br></li>
+				<li> Hannah Kruck<br></li>
+				<li> Manuel Samuel Haynes<br></li>
 			</ul>
 			<u>Why did we choose this theme and data set?</u><br>
 			The issue of refugees and migration has always been an important topic and affects all citizens, whether directly or only indirectly. According to the German Federal Government, more than 70 million people are on the brink of flight worldwide today [1]. 
