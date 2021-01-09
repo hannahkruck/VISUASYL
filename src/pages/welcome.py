@@ -35,6 +35,9 @@ def write():
 		p {
 			text-align: justify; 	
 		}
+		u {
+			text-align: justify; 	
+		}
 		/*page title text*/
 		#text {
 			color: #06648c;			
@@ -274,7 +277,7 @@ def write():
 				<li> Hannah Kruck<br></li>
 				<li> Manuel Samuel Haynes<br></li>
 			</ul>
-			<u>Why did we choose this theme and data set?</u><br>
+			<p><u>Why did we choose this theme and data set?</u><br>
 			The issue of refugees and migration has always been an important topic and affects all citizens, whether directly or only indirectly. According to the German Federal Government, more than 70 million people are on the brink of flight worldwide today [1]. 
 			Wars, persecution or the financial situation lead people to leave their homeland in order to find a safer and better life.
 			We chose this topic and data set to provide information on migration and refugees to interested parties with the help of a visualisation tool.
