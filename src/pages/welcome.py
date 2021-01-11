@@ -75,7 +75,7 @@ def write():
 	with my_expander_one:
 		html_one = """ 
 			<b id=title_color_one>Information</b>
-			<br>VISUASYL uses visualisation methods to provide an overview of the number of annual asylum applications and migration in Europe. The diagrams and the information they provide are described below.
+			<p><br>VISUASYL uses visualisation methods to provide an overview of the number of annual asylum applications and migration in Europe. The diagrams and the information they provide are described below.
 			
 			<div id=aufzaehlung>
 				<u>Chorpleth Map</u>:<br>
@@ -107,7 +107,7 @@ def write():
 					</ul>
 			</div>
 			<br><b id=title_color_one>Interaction Options</b><br>
-				VISUASYL contains a navigation bar that allows users to switch between the <i>Welcome, Map and Detail page</i>. 
+				<p>VISUASYL contains a navigation bar that allows users to switch between the <i>Welcome, Map and Detail page</i>. 
 				The tool also offers users various ways to interact with the diagrams. Some charts allows users to show more information by hovering above the diagram or hide some informations 
 				by clicking on the legends of an diagram to highlight certain information. Other charts such as the maps offer greater interaction possibilities by allowing users to select filters or parameter settings to obtain specific information, e.g. on a country, citizenship, age or gender. 
 				<br>
