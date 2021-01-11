@@ -5,6 +5,7 @@ VISUASYL can be called up via a link without installation or executed locally.
 ## Open Link
 
 Run VISUASYL without installation: [https://share.streamlit.io/hannahkruck/visuasyl/app.py](https://share.streamlit.io/hannahkruck/visuasyl/app.py)
+Please use Chrome or Firefox browser for best performance.
 
 ## Installation
 
