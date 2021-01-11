@@ -26,31 +26,34 @@ def write():
 			font-color: black;
 			background-color: white;
 		}
+
 		#h1 {						/* title*/
 			text-align: center;		
 		}
+
 		h3 {
 			text-align: center;		
 		}
+
 		p {
 			text-align: justify; 	
 		}
-		u {
-			text-align: justify; 	
-		}
-		/*page title text*/
+
 		#text {
 			color: #06648c;			
 			font-weight: normal;	
 			line-height: 150%;		
 		}
+
 		#title_color_one {					
 			color: #1878a1;			
 			font-size: 18px;		
 		}
+		
 		#aufzaehlung {
 			margin-left: 30px;	
 		}
+
 	</style>
 	
     """, unsafe_allow_html=True)
