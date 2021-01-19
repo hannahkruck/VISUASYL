@@ -11,6 +11,7 @@ import altair as alt
 from altair import Chart, X, Y, Axis, SortField, OpacityValue
 import numpy as np
 
+st.set_page_config(layout="wide", page_title='VISUASYL', page_icon = "🌍")
 st.set_page_config(layout="wide")
 ast.core.services.other.set_logging_format()
 
